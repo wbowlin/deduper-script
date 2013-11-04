@@ -104,6 +104,9 @@ def main():
     for dupeset in dupes:
       for dupe in dupeset[1:]:
         batch.add(client.files().trash(fileId=dupe['id']))
+        if len(batch._order) == 1000: # batch maxes out at 1k
+          batch.execute()
+          batch = BatchHttpRequest()
     batch.execute()
     print 'We are done. Check the trash for your files.'
   else:
