@@ -1,5 +1,5 @@
 # Copyright 2013, Google Inc
-# Apache 2.0 License, yada yada
+# See LICENSE
 
 """Dedupes identical files in Google Drive."""
 
