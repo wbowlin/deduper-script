@@ -10,7 +10,7 @@ from apiclient.http import BatchHttpRequest
 from httplib2 import Http
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
-from oauth2client.tools import run
+from oauth2client import tools
 
 
 ONE_GIG = float(1073741824) # so we can do non-integer arithmetic
@@ -28,7 +28,8 @@ def auth(http):
     flow = flow_from_clientsecrets(
         'client_secrets.json',
         scope='https://www.googleapis.com/auth/drive')
-    credentials = run(flow, storage)
+    flags = tools.argparser.parse_args(args=[])
+    credentials = tools.run_flow(flow, storage, flags)
   credentials.authorize(http)
 
 
